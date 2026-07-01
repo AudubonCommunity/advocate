@@ -101,7 +101,7 @@
         }
 
         textarea {
-            height: 250px;
+            height: 320px;
             resize: vertical;
         }
 
@@ -127,17 +127,22 @@
             border-radius: 4px;
             cursor: pointer;
             width: 100%;
-            transition: background 0.2s;
+            transition: background 0.2s, background-color 0.3s ease;
             border-bottom: 3px solid #024725;
         }
 
-        button:hover {
+        button:hover:not(:disabled) {
             background-color: #03522c;
         }
 
-        button:active {
+        button:active:not(:disabled) {
             border-bottom: 1px solid #024725;
             transform: translateY(2px);
+        }
+        
+        button:disabled {
+            cursor: not-allowed;
+            opacity: 0.9;
         }
 
         .alert {
@@ -157,7 +162,6 @@
     </header>
 
     <div class="container">
-        <!-- Landing Page Context -->
         <section class="landing-content">
             <h2>Tell Trenton: Fix the Formula. Fund Our Schools.</h2>
             <p>New Jersey’s public schools are ranked among the best in the nation, but the state's broken school funding formula is punishing communities like Audubon.</p>
@@ -173,11 +177,10 @@
             <p style="margin-top: 1rem;">It is time for our legislators in District 5 to stand up for Audubon’s students. Use the form below to voice your concerns directly to Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman.</p>
         </section>
 
-        <!-- Form Section -->
         <section class="form-card">
             <h2>Email Your Legislators</h2>
             <div class="alert">
-                <strong>How it works:</strong> Filling out this form will verify your local criteria and route your message natively through your own email client, ensuring your communication bypasses Trenton's automated spam blocks.
+                <strong>Make your voice heard:</strong> Fill out the form below to instantly send a message to our District 5 representatives demanding a permanent fix to the school funding formula.
             </div>
 
             <form id="advocacyForm">
@@ -196,10 +199,9 @@
                     <input type="tel" id="phone" required placeholder="(856) 555-0199">
                 </div>
 
-<div class="form-group">
-    <label for="message">Your Message (Editable) *</label>
-    <textarea id="message" required>
-Dear Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman,
+                <div class="form-group">
+                    <label for="message">Your Message (Editable) *</label>
+                    <textarea id="message" required>Dear Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman,
 
 As a resident of Audubon, I am writing to urge you to pass legislation that will permanently fix New Jersey's school funding formula.
 
@@ -207,9 +209,8 @@ The current formula relies on a flawed wealth multiplier that completely divorce
 
 I am asking you to abolish the multiplier and simply fund our school districts fairly and fully based on actual student need. Audubon’s students, teachers, and taxpayers cannot continue to bear the cost of a broken system.
 
-I look forward to hearing how you plan to address this critical issue in the legislature.
-</textarea>
-</div>
+I look forward to hearing how you plan to address this critical issue in the legislature.</textarea>
+                </div>
 
                 <div class="checkbox-group">
                     <input type="checkbox" id="residentCert" required>
@@ -221,56 +222,69 @@ I look forward to hearing how you plan to address this critical issue in the leg
                     <label for="mailingList">I would like to receive email updates and action alerts from Audubon Community Advocates.</label>
                 </div>
 
-                <button type="submit">Generate & Send Email</button>
+                <button type="submit">Send Email to Legislators</button>
             </form>
         </section>
     </div>
 
     <script>
-        // Paste your exact Google Apps Script URL here:
-        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzLGCowPMAlcVjmMG5AtFpXW_9pJlBKJNCNzmlchJBWtgzyPiaDlNIUP-v8HnT7ENTLtg/exec
-";
+        // Your specific Google Apps Script Web App URL
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMj8lkhUJLyw1R1qovpARiJPPinufWepVmPsQpBlackelQELLlkiMIFvRrR2z6CqG6lg/exec";
 
-        // Preloaded Message Template
-        const messageTemplate = `Dear Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman,\n\nAs a resident of Audubon, I am writing to urge you to pass legislation that will permanently fix New Jersey's school funding formula.\n\nThe current formula relies on a flawed wealth multiplier that completely divorces our district's required "Local Fair Share" from reality. This practice makes annual school budgeting completely unpredictable. When the state shifts the burden, local property taxpayers are put on the hook to make up the difference, and our district is forced to cut the educators who serve our children.\n\nI am asking you to abolish the multiplier and simply fund our school districts fairly and fully based on actual student need. Audubon’s students, teachers, and taxpayers cannot continue to bear the cost of a broken system.\n\nI look forward to hearing how you plan to address this critical issue in the legislature.`;
-
-        // Set the default message when the DOM loads
-        document.addEventListener("DOMContentLoaded", () => {
-            document.getElementById("message").value = messageTemplate;
-        });
-
-        // Form submission handling
-        document.getElementById("advocacyForm").addEventListener("submit", function(e) {
+        document.getElementById("advocacyForm").addEventListener("submit", async function(e) {
             e.preventDefault();
+            
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            
+            // Show loading state
+            submitBtn.textContent = "Sending...";
+            submitBtn.disabled = true;
 
-            const name = document.getElementById("name").value;
-            const email = document.getElementById("email").value;
-            const phone = document.getElementById("phone").value;
-            let bodyText = document.getElementById("message").value;
+            // Package the user's data
+            const payload = {
+                name: document.getElementById("name").value,
+                email: document.getElementById("email").value,
+                phone: document.getElementById("phone").value,
+                message: document.getElementById("message").value,
+                optIn: document.getElementById("mailingList").checked
+            };
 
-            // Append signatures to the dynamic text block
-            bodyText += `\n\nSincerely,\n${name}\n${phone}\n${email}`;
-
-            // 1. If opt-in is checked, submit data silently to Google Sheets
-            if (document.getElementById("mailingList").checked && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbzLGCowPMAlcVjmMG5AtFpXW_9pJlBKJNCNzmlchJBWtgzyPiaDlNIUP-v8HnT7ENTLtg/exec
-") {
-                fetch(GOOGLE_SCRIPT_URL, {
+            try {
+                // Send data securely to your Google Apps Script
+                await fetch(GOOGLE_SCRIPT_URL, {
                     method: "POST",
-                    mode: "no-cors", // Required to bypass CORS constraints with Apps Script
+                    mode: "no-cors",
                     headers: {
                         "Content-Type": "application/json"
                     },
-                    body: JSON.stringify({ name, email, phone })
-                }).catch(err => console.log("Mailing list log failure: ", err));
+                    body: JSON.stringify(payload)
+                });
+                
+                // Show success state
+                submitBtn.textContent = "Message Sent Successfully!";
+                submitBtn.style.backgroundColor = "#28a745"; // Turns the button green
+                
+                // Reset the form inputs but keep the prepopulated textarea
+                const defaultMessage = document.getElementById("message").value;
+                this.reset(); 
+                document.getElementById("message").value = defaultMessage;
+                
+                // Revert the button to normal after 5 seconds
+                setTimeout(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = ""; // Removes inline style, reverting to CSS default
+                    submitBtn.disabled = false;
+                }, 5000);
+                
+            } catch (error) {
+                console.error("Submission failed:", error);
+                
+                // Show error state
+                submitBtn.textContent = "Error Sending. Please Try Again.";
+                submitBtn.style.backgroundColor = "#dc3545"; // Turns the button red
+                submitBtn.disabled = false;
             }
-
-            // 2. Build Mailto components
-            const recipients = "SenCruzPerez@njleg.org,AsmMoen@njleg.org,AsmSpearman@njleg.org";
-            const subject = encodeURIComponent("Urgent: Fix the School Funding Formula for Audubon Students");
-            const body = encodeURIComponent(bodyText);
-
-            // Open user's default native mail application
-            window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
         });
     </script>
 </body>
