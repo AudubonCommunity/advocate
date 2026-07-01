@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audubon Community Advocates | Fix the Funding Formula</title>
+    <style>
+        :root {
+            --audubon-green: #046A38;
+            --audubon-gold: #FFCD00;
+            --dark-gray: #2d3748;
+            --light-bg: #f7fafc;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--light-bg);
+            color: var(--dark-gray);
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: var(--audubon-green);
+            border-bottom: 5px solid var(--audubon-gold);
+            color: white;
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: #e2e8f0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .landing-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+        }
+
+        h2 {
+            color: var(--audubon-green);
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        ul {
+            margin: 1rem 0 1.5rem 2rem;
+        }
+
+        li {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-top: 4px solid var(--audubon-green);
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        textarea {
+            width: 100%;
+            padding: 0.75rem;
+            border: 1px solid #cbd5e0;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        textarea {
+            height: 250px;
+            resize: vertical;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1rem;
+        }
+
+        .checkbox-group input {
+            margin-top: 0.3rem;
+            margin-right: 0.75rem;
+            transform: scale(1.2);
+        }
+
+        button {
+            background-color: var(--audubon-green);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.2s;
+            border-bottom: 3px solid #024725;
+        }
+
+        button:hover {
+            background-color: #03522c;
+        }
+
+        button:active {
+            border-bottom: 1px solid #024725;
+            transform: translateY(2px);
+        }
+
+        .alert {
+            background-color: #feebc8;
+            border-left: 4px solid var(--audubon-gold);
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Audubon Community Advocates</h1>
+        <p>Standing up for our local schools, educators, and taxpayers.</p>
+    </header>
+
+    <div class="container">
+        <!-- Landing Page Context -->
+        <section class="landing-content">
+            <h2>Tell Trenton: Fix the Formula. Fund Our Schools.</h2>
+            <p>New Jersey’s public schools are ranked among the best in the nation, but the state's broken school funding formula is punishing communities like Audubon.</p>
+            <p style="margin-top: 1rem;">The state relies on an outdated "Local Fair Share" wealth multiplier to determine how much a town can afford to pay for its schools. This multiplier relies on abstract property values rather than the actual realities of our municipal budget. The cascading effects are devastating:</p>
+            
+            <ul>
+                <li><strong>Unpredictable Budgeting:</strong> School administrators are forced to guess their state aid year over year, making long-term planning impossible.</li>
+                <li><strong>Job Losses:</strong> When the formula shortchanges our district, the only way to balance the budget is by cutting essential educational staff and programs.</li>
+                <li><strong>Taxpayer Burden:</strong> The state shifts its constitutional responsibility onto local homeowners, forcing property taxes higher just to maintain basic infrastructure.</li>
+            </ul>
+
+            <p>The solution is simple: <strong>Abolish the multiplier and fully, fairly fund districts based on actual student need.</strong></p>
+            <p style="margin-top: 1rem;">It is time for our legislators in District 5 to stand up for Audubon’s students. Use the form below to voice your concerns directly to Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman.</p>
+        </section>
+
+        <!-- Form Section -->
+        <section class="form-card">
+            <h2>Email Your Legislators</h2>
+            <div class="alert">
+                <strong>How it works:</strong> Filling out this form will verify your local criteria and route your message natively through your own email client, ensuring your communication bypasses Trenton's automated spam blocks.
+            </div>
+
+            <form id="advocacyForm">
+                <div class="form-group">
+                    <label for="name">Your Full Name *</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Your Email Address *</label>
+                    <input type="email" id="email" required placeholder="johndoe@example.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Your Phone Number *</label>
+                    <input type="tel" id="phone" required placeholder="(856) 555-0199">
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Your Message (Editable) *</label>
+                    <textarea id="message" required></textarea>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="residentCert" required>
+                    <label for="residentCert">I certify that I am a resident of Audubon, NJ. *</label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="mailingList">
+                    <label for="mailingList">I would like to receive email updates and action alerts from Audubon Community Advocates.</label>
+                </div>
+
+                <button type="submit">Generate & Send Email</button>
+            </form>
+        </section>
+    </div>
+
+    <script>
+        // Paste your exact Google Apps Script URL here:
+        const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzLGCowPMAlcVjmMG5AtFpXW_9pJlBKJNCNzmlchJBWtgzyPiaDlNIUP-v8HnT7ENTLtg/exec
+";
+
+        // Preloaded Message Template
+        const messageTemplate = `Dear Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman,\n\nAs a resident of Audubon, I am writing to urge you to pass legislation that will permanently fix New Jersey's school funding formula.\n\nThe current formula relies on a flawed wealth multiplier that completely divorces our district's required "Local Fair Share" from reality. This practice makes annual school budgeting completely unpredictable. When the state shifts the burden, local property taxpayers are put on the hook to make up the difference, and our district is forced to cut the educators who serve our children.\n\nI am asking you to abolish the multiplier and simply fund our school districts fairly and fully based on actual student need. Audubon’s students, teachers, and taxpayers cannot continue to bear the cost of a broken system.\n\nI look forward to hearing how you plan to address this critical issue in the legislature.`;
+
+        // Set the default message when the DOM loads
+        document.addEventListener("DOMContentLoaded", () => {
+            document.getElementById("message").value = messageTemplate;
+        });
+
+        // Form submission handling
+        document.getElementById("advocacyForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            let bodyText = document.getElementById("message").value;
+
+            // Append signatures to the dynamic text block
+            bodyText += `\n\nSincerely,\n${name}\n${phone}\n${email}`;
+
+            // 1. If opt-in is checked, submit data silently to Google Sheets
+            if (document.getElementById("mailingList").checked && GOOGLE_SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbzLGCowPMAlcVjmMG5AtFpXW_9pJlBKJNCNzmlchJBWtgzyPiaDlNIUP-v8HnT7ENTLtg/exec
+") {
+                fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors", // Required to bypass CORS constraints with Apps Script
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({ name, email, phone })
+                }).catch(err => console.log("Mailing list log failure: ", err));
+            }
+
+            // 2. Build Mailto components
+            const recipients = "SenCruzPerez@njleg.org,AsmMoen@njleg.org,AsmSpearman@njleg.org";
+            const subject = encodeURIComponent("Urgent: Fix the School Funding Formula for Audubon Students");
+            const body = encodeURIComponent(bodyText);
+
+            // Open user's default native mail application
+            window.location.href = `mailto:${recipients}?subject=${subject}&body=${body}`;
+        });
+    </script>
+</body>
+</html>
