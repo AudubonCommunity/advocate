@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<!--test-->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,6 +7,7 @@
     <style>
         :root {
             --audubon-green: #046A38;
+            --audubon-green-dark: #024725;
             --audubon-gold: #FFCD00;
             --dark-gray: #2d3748;
             --light-bg: #f7fafc;
@@ -20,17 +20,28 @@
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             background-color: var(--light-bg);
             color: var(--dark-gray);
             line-height: 1.6;
+            padding-bottom: 90px; /* room for the sticky signup bar */
         }
 
+        /* ---------- Header & Nav ---------- */
         header {
             background-color: var(--audubon-green);
             border-bottom: 5px solid var(--audubon-gold);
             color: white;
-            padding: 2rem 1rem;
+        }
+
+        .header-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 1.75rem 1rem 1.25rem;
             text-align: center;
         }
 
@@ -44,18 +55,114 @@
             color: #e2e8f0;
         }
 
+        nav.main-nav {
+            background-color: var(--audubon-green-dark);
+        }
+
+        .nav-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link, .nav-item > button.nav-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 0.9rem 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+
+        .nav-link:hover, .nav-item:hover > .nav-link {
+            background-color: rgba(255, 205, 0, 0.15);
+        }
+
+        .nav-link.active {
+            box-shadow: inset 0 -3px 0 var(--audubon-gold);
+        }
+
+        .caret {
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+        }
+
+        .nav-item:hover .caret {
+            transform: rotate(180deg);
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: white;
+            min-width: 240px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.15);
+            border-radius: 0 0 6px 6px;
+            overflow: hidden;
+            z-index: 20;
+        }
+
+        .nav-item:hover .dropdown,
+        .nav-item:focus-within .dropdown {
+            display: block;
+        }
+
+        .dropdown button {
+            display: block;
+            width: 100%;
+            text-align: left;
+            background: none;
+            border: none;
+            color: var(--dark-gray);
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.85rem 1.1rem;
+            cursor: pointer;
+        }
+
+        .dropdown button:hover {
+            background-color: var(--light-bg);
+            color: var(--audubon-green);
+        }
+
+        /* ---------- Layout ---------- */
         .container {
             max-width: 800px;
             margin: 2rem auto;
             padding: 0 1rem;
         }
 
-        .landing-content {
+        .page {
+            display: none;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        .card {
             background: white;
             padding: 2rem;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             margin-bottom: 2rem;
+        }
+
+        .form-card {
+            border-top: 4px solid var(--audubon-green);
         }
 
         h2 {
@@ -64,20 +171,18 @@
             font-size: 1.8rem;
         }
 
+        h3 {
+            color: var(--audubon-green);
+            margin-bottom: 0.75rem;
+            font-size: 1.3rem;
+        }
+
         ul {
             margin: 1rem 0 1.5rem 2rem;
         }
 
         li {
             margin-bottom: 0.5rem;
-        }
-
-        .form-card {
-            background: white;
-            padding: 2rem;
-            border-radius: 8px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-top: 4px solid var(--audubon-green);
         }
 
         .form-group {
@@ -118,7 +223,7 @@
             transform: scale(1.2);
         }
 
-        button {
+        button.btn {
             background-color: var(--audubon-green);
             color: white;
             border: none;
@@ -129,21 +234,27 @@
             cursor: pointer;
             width: 100%;
             transition: background 0.2s, background-color 0.3s ease;
-            border-bottom: 3px solid #024725;
+            border-bottom: 3px solid var(--audubon-green-dark);
         }
 
-        button:hover:not(:disabled) {
+        button.btn:hover:not(:disabled) {
             background-color: #03522c;
         }
 
-        button:active:not(:disabled) {
-            border-bottom: 1px solid #024725;
+        button.btn:active:not(:disabled) {
+            border-bottom: 1px solid var(--audubon-green-dark);
             transform: translateY(2px);
         }
-        
-        button:disabled {
+
+        button.btn:disabled {
             cursor: not-allowed;
             opacity: 0.9;
+        }
+
+        .btn-inline {
+            width: auto;
+            display: inline-block;
+            padding: 0.85rem 1.75rem;
         }
 
         .alert {
@@ -153,97 +264,284 @@
             margin-bottom: 1.5rem;
             border-radius: 4px;
         }
+
+        /* ---------- Sticky newsletter signup bar ---------- */
+        #signupBar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--audubon-gold);
+            border-top: 3px solid var(--audubon-green-dark);
+            z-index: 50;
+        }
+
+        #signupBar .signup-inner {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0.85rem 1rem;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        #signupBar .signup-text {
+            flex: 1 1 240px;
+            font-weight: 600;
+            color: var(--audubon-green-dark);
+        }
+
+        #signupBar form {
+            display: flex;
+            flex: 2 1 320px;
+            gap: 0.5rem;
+        }
+
+        #signupBar input[type="email"] {
+            flex: 1;
+            border: 1px solid var(--audubon-green-dark);
+        }
+
+        #signupBar button.btn {
+            width: auto;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.95rem;
+            flex-shrink: 0;
+        }
+
+        #signupBar .close-btn {
+            background: none;
+            border: none;
+            color: var(--audubon-green-dark);
+            font-size: 1.4rem;
+            font-weight: bold;
+            cursor: pointer;
+            line-height: 1;
+            padding: 0.25rem 0.5rem;
+        }
+
+        #signupBar .signup-status {
+            flex: 1 1 100%;
+            font-size: 0.9rem;
+            color: var(--audubon-green-dark);
+            font-weight: 600;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            color: #718096;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .nav-inner {
+                flex-direction: column;
+                align-items: stretch;
+                text-align: center;
+            }
+            .dropdown {
+                position: static;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Audubon Community Advocates</h1>
-        <p>Standing up for our local schools, educators, and taxpayers.</p>
+        <div class="header-inner">
+            <h1>Audubon Community Advocates</h1>
+            <p>Standing up for our local schools, educators, and taxpayers.</p>
+        </div>
     </header>
 
+    <nav class="main-nav">
+        <div class="nav-inner">
+            <div class="nav-item">
+                <button class="nav-link" data-page="home">Home</button>
+            </div>
+            <div class="nav-item">
+                <button class="nav-link" aria-haspopup="true">The Issues <span class="caret">&#9662;</span></button>
+                <div class="dropdown">
+                    <button data-page="issue-funding">NJ's School Funding Formula</button>
+                </div>
+            </div>
+            <div class="nav-item">
+                <button class="nav-link" data-page="who-we-are">Who We Are</button>
+            </div>
+        </div>
+    </nav>
+
     <div class="container">
-        <section class="landing-content">
-            <h2>Tell Trenton: Fix the Formula. Fund Our Schools.</h2>
-            <p>New Jersey’s public schools are ranked among the best in the nation, but the state's broken school funding formula is punishing communities like Audubon.</p>
-            <p style="margin-top: 1rem;">The state relies on an outdated "Local Fair Share" wealth multiplier to determine how much a town can afford to pay for its schools. This multiplier relies on abstract property values rather than the actual realities of our municipal budget. The cascading effects are devastating:</p>
-            
-            <ul>
-                <li><strong>Unpredictable Budgeting:</strong> School administrators are forced to guess their state aid year over year, making long-term planning impossible.</li>
-                <li><strong>Job Losses:</strong> When the formula shortchanges our district, the only way to balance the budget is by cutting essential educational staff and programs.</li>
-                <li><strong>Taxpayer Burden:</strong> The state shifts its constitutional responsibility onto local homeowners, forcing property taxes higher just to maintain basic infrastructure.</li>
-            </ul>
 
-            <p>The solution is simple: <strong>Abolish the multiplier and fully, fairly fund districts based on actual student need.</strong></p>
-            <p style="margin-top: 1rem;">It is time for our legislators in District 5 to stand up for Audubon’s students. Use the form below to voice your concerns directly to Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman.</p>
-        </section>
+        <!-- ================= HOME PAGE ================= -->
+        <section class="page active" id="page-home">
+            <div class="card">
+                <h2>Tell Trenton: Fully Fund the Formula. Stop Scaling Down Our Schools.</h2>
+                <p>New Jersey's school funding formula (SFRA) calculates exactly what each district needs for a thorough and efficient education &mdash; the Adequacy Budget &mdash; and how much of that a community can reasonably cover locally. The state is supposed to pay the rest through Equalization Aid.</p>
+                <p style="margin-top: 1rem;">In practice, it doesn't work that way. The state decides how much aid money is available first, then applies a <strong>scaling multiplier</strong> that shrinks every district's aid to fit inside that fixed pot &mdash; regardless of what the formula actually says students need. The result is a funding formula that looks fair on paper but quietly delivers less than it promises. Here's what that means for Audubon:</p>
 
-        <section class="form-card">
-            <h2>Email Your Legislators</h2>
-            <div class="alert">
-                <strong>Make your voice heard:</strong> Fill out the form below to instantly send a message to our District 5 representatives demanding a permanent fix to the school funding formula.
+                <ul>
+                    <li><strong>Audubon is still underfunded, two years running.</strong> Even after raising local taxes, the district was $2.5 million below the state's own adequacy target in 2025-26, and is still projected to be about $1.5 million short in 2026-27.</li>
+                    <li><strong>Real costs aren't reimbursed.</strong> Audubon's transportation aid covers only a fraction of actual costs &mdash; roughly $74,000 in aid against $851,550 in projected costs, a $777,000 gap the district has to cover with general education funds.</li>
+                    <li><strong>Year-to-year swings make planning impossible.</strong> Arbitrary caps let the state cut aid by up to 3% or raise it by up to 6% each year, unrelated to a district's actual, calculated need.</li>
+                    <li><strong>The pressure compounds.</strong> In 2026-27 alone, Audubon faces a $205,000 cut in state aid at the same time health care costs are rising 37% (over $858,000) &mdash; forcing a 7.59% property tax hike and roughly $725,000 in additional cuts.</li>
+                </ul>
+
+                <p>The fix is simple: <strong>fully fund the Adequacy Budget as calculated, eliminate the scaling multiplier that shrinks it to fit a fixed appropriation, and make the caps on state aid cuts permanent so districts can plan responsibly.</strong></p>
+                <p style="margin-top: 1rem;">It is time for our legislators in District 5 to stand up for Audubon's students. Use the form below to voice your concerns directly to Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman.</p>
             </div>
 
-            <form id="advocacyForm">
-                <div class="form-group">
-                    <label for="name">Your Full Name *</label>
-                    <input type="text" id="name" required placeholder="John Doe">
+            <section class="card form-card" id="takeActionForm">
+                <h2>Email Your Legislators</h2>
+                <div class="alert">
+                    <strong>Make your voice heard:</strong> Fill out the form below to instantly send a message to our District 5 representatives demanding a permanent fix to the school funding formula.
                 </div>
 
-                <div class="form-group">
-                    <label for="email">Your Email Address *</label>
-                    <input type="email" id="email" required placeholder="johndoe@example.com">
-                </div>
+                <form id="advocacyForm">
+                    <div class="form-group">
+                        <label for="name">Your Full Name *</label>
+                        <input type="text" id="name" required placeholder="John Doe">
+                    </div>
 
-                <div class="form-group">
-                    <label for="phone">Your Phone Number *</label>
-                    <input type="tel" id="phone" required placeholder="(856) 555-0199">
-                </div>
+                    <div class="form-group">
+                        <label for="email">Your Email Address *</label>
+                        <input type="email" id="email" required placeholder="johndoe@example.com">
+                    </div>
 
-                <div class="form-group">
-                    <label for="message">Your Message (Editable) *</label>
-                    <textarea id="message" required>Dear Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman,
+                    <div class="form-group">
+                        <label for="phone">Your Phone Number *</label>
+                        <input type="tel" id="phone" required placeholder="(856) 555-0199">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Your Message (Editable) *</label>
+                        <textarea id="message" required>Dear Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman,
 
 As a resident of Audubon, I am writing to urge you to pass legislation that will permanently fix New Jersey's school funding formula.
 
-The current formula relies on a flawed wealth multiplier that completely divorces our district's required "Local Fair Share" from reality. This practice makes annual school budgeting completely unpredictable. When the state shifts the burden, local property taxpayers are put on the hook to make up the difference, and our district is forced to cut the educators who serve our children.
+The formula is supposed to calculate exactly what our district needs for a thorough and efficient education, then have the state cover the gap beyond what our community can reasonably afford locally. Instead, the state sets its total aid budget first and applies a scaling multiplier that shrinks every district's aid to fit that fixed pot, regardless of what the formula actually says our students need.
 
-I am asking you to abolish the multiplier and simply fund our school districts fairly and fully based on actual student need. Audubon’s students, teachers, and taxpayers cannot continue to bear the cost of a broken system.
+The impact on Audubon is real: our district remained $2.5 million below the state's own adequacy target in 2025-26, and is still projected to be about $1.5 million short in 2026-27, even after local tax increases. Categorical aid streams like transportation fall far short of actual costs, leaving a $777,000 gap that general education funds are forced to cover. And because state aid can swing by as much as 3% down or 6% up each year with no relation to real need, our district cannot plan responsibly from one year to the next.
+
+I am asking you to eliminate the scaling multiplier and fully fund our school district based on the formula's own calculated need, not a fixed appropriation. Audubon's students, teachers, and taxpayers cannot continue to bear the cost of a formula that promises full funding on paper but delivers less in practice.
 
 I look forward to hearing how you plan to address this critical issue in the legislature.</textarea>
-                </div>
+                    </div>
 
-                <div class="checkbox-group">
-                    <input type="checkbox" id="residentCert" required>
-                    <label for="residentCert">I certify that I am a resident of Audubon, NJ. *</label>
-                </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="residentCert" required>
+                        <label for="residentCert">I certify that I am a resident of Audubon, NJ. *</label>
+                    </div>
 
-                <div class="checkbox-group">
-                    <input type="checkbox" id="mailingList">
-                    <label for="mailingList">I would like to receive email updates and action alerts from Audubon Community Advocates.</label>
-                </div>
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="mailingList">
+                        <label for="mailingList">I would like to receive email updates and action alerts from Audubon Community Advocates.</label>
+                    </div>
 
-                <button type="submit">Send Email to Legislators</button>
-            </form>
+                    <button type="submit" class="btn">Send Email to Legislators</button>
+                </form>
+            </section>
         </section>
+
+        <!-- ================= ISSUES > FUNDING FORMULA ================= -->
+        <section class="page" id="page-issue-funding">
+            <div class="card">
+                <h2>NJ's School Funding Formula</h2>
+                <p>New Jersey's formula calculates what each district actually needs (the Adequacy Budget), then is supposed to cover the gap beyond what a community can locally afford. Instead, the state sets its total aid budget first and applies a <strong>scaling multiplier</strong> that shrinks every district's aid to fit &mdash; regardless of calculated need. For Audubon, that means:</p>
+                <ul>
+                    <li><strong>Still under-adequacy, two years running:</strong> $2.5 million short in 2025-26, and roughly $1.5 million short in 2026-27 &mdash; even after local tax increases.</li>
+                    <li><strong>Real costs go unreimbursed:</strong> a $777,000 gap between actual transportation costs and the state aid meant to cover them.</li>
+                    <li><strong>Unpredictable year-to-year swings:</strong> state aid can be cut by up to 3% or raised by up to 6% annually, with no relationship to actual district need.</li>
+                    <li><strong>Compounding pressure:</strong> a $205,000 state aid cut arriving the same year health care costs jump 37%, forcing a 7.59% property tax hike.</li>
+                </ul>
+                <p>We're calling on our District 5 legislators to eliminate the scaling multiplier and fully fund schools based on the formula's own calculated need &mdash; not a fixed appropriation.</p>
+                <button class="btn btn-inline" data-page="home" data-scroll-to="takeActionForm">Take Action &rarr;</button>
+            </div>
+        </section>
+
+        <!-- ================= WHO WE ARE ================= -->
+        <section class="page" id="page-who-we-are">
+            <div class="card">
+                <h2>Who We Are</h2>
+                <p>Audubon Community Advocates is a group of concerned neighbors, parents, and residents of Audubon, NJ who came together because we believe our schools, our educators, and our students deserve better.</p>
+                <p style="margin-top: 1rem;">We are not a political party or a government body &mdash; we're everyday members of this community who care about the future of Audubon's schools and the taxpayers who fund them. We formed to give local residents a direct, simple way to make their voices heard on the issues that affect our schools, starting with New Jersey's broken school funding formula.</p>
+                <p style="margin-top: 1rem;">Whether you're a parent, an educator, or simply a neighbor who cares about this town, we welcome you to join us.</p>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        &copy; <span id="year"></span> Audubon Community Advocates
+    </footer>
+
+    <!-- ================= STICKY NEWSLETTER SIGNUP BAR ================= -->
+    <div id="signupBar">
+        <div class="signup-inner">
+            <div class="signup-text">Get action alerts for Audubon's schools:</div>
+            <form id="newsletterForm">
+                <input type="email" id="newsletterEmail" placeholder="you@example.com" required>
+                <button type="submit" class="btn">Sign Up</button>
+            </form>
+            <button class="close-btn" id="closeSignupBar" aria-label="Close">&times;</button>
+        </div>
     </div>
 
     <script>
         // Your specific Google Apps Script Web App URL
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMj8lkhUJLyw1R1qovpARiJPPinufWepVmPsQpBlackelQELLlkiMIFvRrR2z6CqG6lg/exec";
 
+        document.getElementById("year").textContent = new Date().getFullYear();
+
+        /* ---------- Tab / page navigation ---------- */
+        const pages = document.querySelectorAll(".page");
+        const navLinks = document.querySelectorAll(".nav-link[data-page]");
+        const dropdownLinks = document.querySelectorAll(".dropdown button[data-page]");
+        const actionButtons = document.querySelectorAll("button.btn[data-page]");
+
+        function showPage(pageId, scrollToId) {
+            pages.forEach(p => p.classList.remove("active"));
+            document.getElementById("page-" + pageId).classList.add("active");
+
+            navLinks.forEach(link => link.classList.remove("active"));
+            const activeLink = document.querySelector('.nav-link[data-page="' + pageId + '"]');
+            if (activeLink) activeLink.classList.add("active");
+
+            if (scrollToId) {
+                // Wait a tick for the page to render before scrolling
+                setTimeout(() => {
+                    const el = document.getElementById(scrollToId);
+                    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+                }, 50);
+            } else {
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        }
+
+        [...navLinks, ...dropdownLinks, ...actionButtons].forEach(el => {
+            el.addEventListener("click", function() {
+                const pageId = this.getAttribute("data-page");
+                const scrollToId = this.getAttribute("data-scroll-to");
+                showPage(pageId, scrollToId);
+            });
+        });
+
+        /* ---------- Advocacy (Take Action) form ---------- */
         document.getElementById("advocacyForm").addEventListener("submit", async function(e) {
             e.preventDefault();
-            
+
             const submitBtn = this.querySelector('button[type="submit"]');
             const originalText = submitBtn.textContent;
-            
-            // Show loading state
+
             submitBtn.textContent = "Sending...";
             submitBtn.disabled = true;
 
-            // Package the user's data
             const payload = {
+                formType: "advocacy",
                 name: document.getElementById("name").value,
                 email: document.getElementById("email").value,
                 phone: document.getElementById("phone").value,
@@ -252,38 +550,82 @@ I look forward to hearing how you plan to address this critical issue in the leg
             };
 
             try {
-                // Send data securely to your Google Apps Script
                 await fetch(GOOGLE_SCRIPT_URL, {
                     method: "POST",
                     mode: "no-cors",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
+                    headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(payload)
                 });
-                
-                // Show success state
+
                 submitBtn.textContent = "Message Sent Successfully!";
-                submitBtn.style.backgroundColor = "#28a745"; // Turns the button green
-                
-                // Reset the form inputs but keep the prepopulated textarea
+                submitBtn.style.backgroundColor = "#28a745";
+
                 const defaultMessage = document.getElementById("message").value;
-                this.reset(); 
+                this.reset();
                 document.getElementById("message").value = defaultMessage;
-                
-                // Revert the button to normal after 5 seconds
+
                 setTimeout(() => {
                     submitBtn.textContent = originalText;
-                    submitBtn.style.backgroundColor = ""; // Removes inline style, reverting to CSS default
+                    submitBtn.style.backgroundColor = "";
                     submitBtn.disabled = false;
                 }, 5000);
-                
+
             } catch (error) {
                 console.error("Submission failed:", error);
-                
-                // Show error state
                 submitBtn.textContent = "Error Sending. Please Try Again.";
-                submitBtn.style.backgroundColor = "#dc3545"; // Turns the button red
+                submitBtn.style.backgroundColor = "#dc3545";
+                submitBtn.disabled = false;
+            }
+        });
+
+        /* ---------- Newsletter signup bar ---------- */
+        const signupBar = document.getElementById("signupBar");
+
+        if (localStorage.getItem("acaSignupDismissed") === "true") {
+            signupBar.style.display = "none";
+        }
+
+        document.getElementById("closeSignupBar").addEventListener("click", function() {
+            signupBar.style.display = "none";
+            localStorage.setItem("acaSignupDismissed", "true");
+        });
+
+        document.getElementById("newsletterForm").addEventListener("submit", async function(e) {
+            e.preventDefault();
+
+            const submitBtn = this.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            const emailField = document.getElementById("newsletterEmail");
+
+            submitBtn.textContent = "Signing Up...";
+            submitBtn.disabled = true;
+
+            const payload = {
+                formType: "newsletter",
+                email: emailField.value
+            };
+
+            try {
+                await fetch(GOOGLE_SCRIPT_URL, {
+                    method: "POST",
+                    mode: "no-cors",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(payload)
+                });
+
+                submitBtn.textContent = "Signed Up!";
+                submitBtn.style.backgroundColor = "#28a745";
+                emailField.value = "";
+
+                setTimeout(() => {
+                    signupBar.style.display = "none";
+                    localStorage.setItem("acaSignupDismissed", "true");
+                }, 2500);
+
+            } catch (error) {
+                console.error("Newsletter signup failed:", error);
+                submitBtn.textContent = "Error. Try Again.";
+                submitBtn.style.backgroundColor = "#dc3545";
                 submitBtn.disabled = false;
             }
         });
