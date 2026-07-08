@@ -334,13 +334,6 @@
             font-weight: 600;
         }
 
-        footer {
-            text-align: center;
-            padding: 1.5rem 1rem;
-            color: #718096;
-            font-size: 0.9rem;
-        }
-
         @media (max-width: 600px) {
             .nav-inner {
                 flex-direction: column;
@@ -384,14 +377,14 @@
         <section class="page active" id="page-issue-funding">
             <div class="card">
                 <h2>Tell Trenton: Fully Fund the Formula. Stop Scaling Down Our Schools.</h2>
-                <p>New Jersey's school funding formula (SFRA) calculates exactly what each district needs for a thorough and efficient education &mdash; the Adequacy Budget &mdash; and how much of that a community can reasonably cover locally. The state is supposed to pay the rest through Equalization Aid.</p>
-                <p style="margin-top: 1rem;">In practice, it doesn't work that way. The state decides how much aid money is available first, then applies a <strong>scaling multiplier</strong> that shrinks the amount of aid each district receives to fit inside that fixed pot &mdash; regardless of what the formula actually says students need. The result is a funding formula that looks fair on paper but quietly delivers less than it promises. Here's what that means for Audubon:</p>
+                <p>New Jersey's school funding formula (SFRA) calculates exactly what each district needs for a thorough and efficient education (the Adequacy Budget) and how much of that a community can reasonably cover locally. The state is supposed to pay the rest through Equalization Aid.</p>
+                <p style="margin-top: 1rem;">In practice, it doesn't work that way. The state decides how much aid money is available first, then applies a <strong>scaling multiplier</strong> that shrinks the amount of aid each district receives to fit inside that fixed pot, regardless of what the formula actually says students need. The result is a funding formula that looks fair on paper but quietly delivers less than it promises. Here's what that means for Audubon:</p>
 
                 <ul>
                     <li><strong>Audubon is still underfunded, two years running.</strong> Even after raising local taxes, the district was $2.5 million below the state's own adequacy target in 2025-26, and is still projected to be about $1.5 million short in 2026-27.</li>
-                    <li><strong>Real costs aren't reimbursed.</strong> Audubon's transportation aid covers only a fraction of actual costs &mdash; roughly $74,000 in aid against $851,550 in projected costs, a $777,000 gap the district has to cover with general education funds.</li>
+                    <li><strong>Real costs aren't reimbursed.</strong> Audubon's transportation aid covers only a fraction of actual costs: roughly $74,000 in aid against $851,550 in projected costs, a $777,000 gap the district has to cover with general education funds.</li>
                     <li><strong>Year-to-year swings make planning impossible.</strong> Arbitrary caps let the state cut aid by up to 3% or raise it by up to 6% each year, unrelated to a district's actual, calculated need.</li>
-                    <li><strong>The pressure compounds.</strong> In 2026-27 alone, Audubon faces a $205,000 cut in state aid at the same time health care costs are rising 37% (over $858,000) &mdash; forcing the district to make difficult decisions which resulted in a 7.59% property tax hike and roughly $725,000 in additional cuts.</li>
+                    <li><strong>The pressure compounds.</strong> In 2026-27 alone, Audubon faces a $205,000 cut in state aid at the same time health care costs are rising 37% (over $858,000), forcing the district to make difficult decisions which resulted in a 7.59% property tax hike and roughly $725,000 in additional cuts.</li>
                 </ul>
 
                 <p>The fix is simple:</p>
@@ -401,7 +394,7 @@
                     <li><strong>Make the caps on state aid cuts permanent</strong> so districts can plan responsibly.</li>
                 </ol>
 
-                <p style="margin-top: 1rem;">It is time for our legislators in District 5 to stand up for Audubon's students. Use the form below to voice your concerns directly to Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman.</p>
+                <p style="margin-top: 1rem;">It is time for our legislators in District 5 to stand up for Audubon's students and residents. Use the form below to voice your concerns directly to Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman.</p>
                 <a href="#takeActionForm" class="btn btn-inline" style="text-decoration: none; display: inline-block; margin-top: 0.5rem;">Take Action &darr;</a>
             </div>
 
@@ -476,16 +469,12 @@ I look forward to hearing how you plan to address this critical issue in the leg
             <div class="card">
                 <h2>Who We Are</h2>
                 <p>Audubon Community Advocates is a group of concerned neighbors, parents, and residents of Audubon, NJ who came together because we believe our schools, our educators, and our students deserve better.</p>
-                <p style="margin-top: 1rem;">We are not a political party or a government body &mdash; we're everyday members of this community who care about the future of Audubon's schools and the taxpayers who fund them. We formed to give local residents a direct, simple way to make their voices heard on the issues that affect our schools, starting with New Jersey's broken school funding formula.</p>
+                <p style="margin-top: 1rem;">We are not a political party or a government body. We're everyday members of this community who care about the future of Audubon's schools and the taxpayers who fund them. We formed to give local residents a direct, simple way to make their voices heard on the issues that affect our schools, starting with New Jersey's broken school funding formula.</p>
                 <p style="margin-top: 1rem;">Whether you're a parent, an educator, or simply a neighbor who cares about this town, we welcome you to join us.</p>
             </div>
         </section>
 
     </div>
-
-    <footer>
-        &copy; <span id="year"></span> Audubon Community Advocates
-    </footer>
 
     <!-- ================= STICKY NEWSLETTER SIGNUP BAR ================= -->
     <div id="signupBar">
@@ -503,9 +492,6 @@ I look forward to hearing how you plan to address this critical issue in the leg
         // Your specific Google Apps Script Web App URL
         const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzMj8lkhUJLyw1R1qovpARiJPPinufWepVmPsQpBlackelQELLlkiMIFvRrR2z6CqG6lg/exec";
 
-        document.getElementById("year").textContent = new Date().getFullYear();
-
-        /* ---------- Tab / page navigation ---------- */
         const pages = document.querySelectorAll(".page");
         const navLinks = document.querySelectorAll(".nav-link[data-page]");
         const dropdownLinks = document.querySelectorAll(".dropdown button[data-page]");
