@@ -177,12 +177,18 @@
             font-size: 1.3rem;
         }
 
-        ul {
+        ul, ol {
             margin: 1rem 0 1.5rem 2rem;
         }
 
         li {
             margin-bottom: 0.5rem;
+            padding-left: 0.25rem;
+        }
+
+        li::marker {
+            font-weight: 600;
+            color: var(--audubon-green);
         }
 
         .form-group {
@@ -361,10 +367,7 @@
     <nav class="main-nav">
         <div class="nav-inner">
             <div class="nav-item">
-                <button class="nav-link" data-page="home">Home</button>
-            </div>
-            <div class="nav-item">
-                <button class="nav-link" aria-haspopup="true">The Issues <span class="caret">&#9662;</span></button>
+                <button class="nav-link" id="issuesNavLink" aria-haspopup="true">The Issues <span class="caret">&#9662;</span></button>
                 <div class="dropdown">
                     <button data-page="issue-funding">NJ's School Funding Formula</button>
                 </div>
@@ -377,8 +380,8 @@
 
     <div class="container">
 
-        <!-- ================= HOME PAGE ================= -->
-        <section class="page active" id="page-home">
+        <!-- ================= ISSUES > FUNDING FORMULA (default landing page) ================= -->
+        <section class="page active" id="page-issue-funding">
             <div class="card">
                 <h2>Tell Trenton: Fully Fund the Formula. Stop Scaling Down Our Schools.</h2>
                 <p>New Jersey's school funding formula (SFRA) calculates exactly what each district needs for a thorough and efficient education &mdash; the Adequacy Budget &mdash; and how much of that a community can reasonably cover locally. The state is supposed to pay the rest through Equalization Aid.</p>
@@ -391,15 +394,15 @@
                     <li><strong>The pressure compounds.</strong> In 2026-27 alone, Audubon faces a $205,000 cut in state aid at the same time health care costs are rising 37% (over $858,000) &mdash; forcing the district to make difficult decisions which resulted in a 7.59% property tax hike and roughly $725,000 in additional cuts.</li>
                 </ul>
 
-                <p>The fix is simple: 
-                    <ol>
-                        
-                    <li><strong>Fully fund the Adequacy Budget as calculated, </strong></li>
-                    <li><strong>Eliminate the scaling multiplier that shrinks it to fit a fixed appropriation, and </strong></li>
-                    <li><strong>Make the caps on state aid cuts permanent so districts can plan responsibly.</strong></li>
-                    </ol>
-                </p>
+                <p>The fix is simple:</p>
+                <ol>
+                    <li><strong>Fully fund the Adequacy Budget as calculated.</strong></li>
+                    <li><strong>Eliminate the scaling multiplier</strong> that shrinks it to fit a fixed appropriation.</li>
+                    <li><strong>Make the caps on state aid cuts permanent</strong> so districts can plan responsibly.</li>
+                </ol>
+
                 <p style="margin-top: 1rem;">It is time for our legislators in District 5 to stand up for Audubon's students. Use the form below to voice your concerns directly to Senator Cruz-Pérez, Assemblyman Moen, and Assemblyman Spearman.</p>
+                <a href="#takeActionForm" class="btn btn-inline" style="text-decoration: none; display: inline-block; margin-top: 0.5rem;">Take Action &darr;</a>
             </div>
 
             <section class="card form-card" id="takeActionForm">
@@ -420,8 +423,8 @@
                     </div>
 
                     <div class="form-group">
-                        <label for="phone">Your Phone Number *</label>
-                        <input type="tel" id="phone" required placeholder="(856) 555-0199">
+                        <label for="phone">Your Phone Number </label>
+                        <input type="tel" id="phone" placeholder="(856) 555-0199">
                     </div>
 
                     <div class="form-group">
@@ -434,7 +437,21 @@ The formula is supposed to calculate exactly what our district needs for a thoro
 
 The impact on Audubon is real: our district remained $2.5 million below the state's own adequacy target in 2025-26, and is still projected to be about $1.5 million short in 2026-27, even after local tax increases. Categorical aid streams like transportation fall far short of actual costs, leaving a $777,000 gap that general education funds are forced to cover. And because state aid can swing by as much as 3% down or 6% up each year with no relation to real need, our district cannot plan responsibly from one year to the next.
 
-I am asking you to eliminate the scaling multiplier and fully fund our school district based on the formula's own calculated need, not a fixed appropriation. Audubon's students, teachers, and taxpayers cannot continue to bear the cost of a formula that promises full funding on paper but delivers less in practice.
+I am asking you to support the following reforms:
+
+1. Fully fund the Adequacy Budget as calculated, and eliminate the scaling multiplier that shrinks it to fit a fixed appropriation.
+2. Make the caps on state aid cuts permanent, and allow for multi-year state aid projections that extend the district planning window by at least six weeks.
+3. Permanently change special education funding from a census-based method to actual numbers.
+4. Fully fund Extraordinary Special Education Aid.
+5. Align transportation funding with the real cost of providing it.
+6. Cap year-over-year vendor cost increases.
+7. Reform the state health benefits plan.
+8. Revise the PILOT (payment in lieu of taxes) program.
+9. Change aggregate income to median income, and use three-to-five-year averages for Local Fair Share calculations.
+10. Use current property and income data, not figures that are years out of date, for funding calculations.
+11. Update the Educational Adequacy Report process to reflect real-time needs.
+
+Audubon's students, teachers, and taxpayers cannot continue to bear the cost of a formula that promises full funding on paper but delivers less in practice.
 
 I look forward to hearing how you plan to address this critical issue in the legislature.</textarea>
                     </div>
@@ -452,22 +469,6 @@ I look forward to hearing how you plan to address this critical issue in the leg
                     <button type="submit" class="btn">Send Email to Legislators</button>
                 </form>
             </section>
-        </section>
-
-        <!-- ================= ISSUES > FUNDING FORMULA ================= -->
-        <section class="page" id="page-issue-funding">
-            <div class="card">
-                <h2>NJ's School Funding Formula</h2>
-                <p>New Jersey's formula calculates what each district actually needs (the Adequacy Budget), then is supposed to cover the gap beyond what a community can locally afford. Instead, the state sets its total aid budget first and applies a <strong>scaling multiplier</strong> that shrinks every district's aid to fit &mdash; regardless of calculated need. For Audubon, that means:</p>
-                <ul>
-                    <li><strong>Still under-adequacy, two years running:</strong> $2.5 million short in 2025-26, and roughly $1.5 million short in 2026-27 &mdash; even after local tax increases.</li>
-                    <li><strong>Real costs go unreimbursed:</strong> a $777,000 gap between actual transportation costs and the state aid meant to cover them.</li>
-                    <li><strong>Unpredictable year-to-year swings:</strong> state aid can be cut by up to 3% or raised by up to 6% annually, with no relationship to actual district need.</li>
-                    <li><strong>Compounding pressure:</strong> a $205,000 state aid cut arriving the same year health care costs jump 37%, forcing a 7.59% property tax hike.</li>
-                </ul>
-                <p>We're calling on our District 5 legislators to eliminate the scaling multiplier and fully fund schools based on the formula's own calculated need &mdash; not a fixed appropriation.</p>
-                <button class="btn btn-inline" data-page="home" data-scroll-to="takeActionForm">Take Action &rarr;</button>
-            </div>
         </section>
 
         <!-- ================= WHO WE ARE ================= -->
@@ -515,8 +516,13 @@ I look forward to hearing how you plan to address this critical issue in the leg
             document.getElementById("page-" + pageId).classList.add("active");
 
             navLinks.forEach(link => link.classList.remove("active"));
+            document.getElementById("issuesNavLink").classList.remove("active");
             const activeLink = document.querySelector('.nav-link[data-page="' + pageId + '"]');
-            if (activeLink) activeLink.classList.add("active");
+            if (activeLink) {
+                activeLink.classList.add("active");
+            } else if (pageId === "issue-funding") {
+                document.getElementById("issuesNavLink").classList.add("active");
+            }
 
             if (scrollToId) {
                 // Wait a tick for the page to render before scrolling
@@ -536,6 +542,9 @@ I look forward to hearing how you plan to address this critical issue in the leg
                 showPage(pageId, scrollToId);
             });
         });
+
+        // Sync the nav highlight to the default landing page (Issues > Funding Formula) on load
+        document.getElementById("issuesNavLink").classList.add("active");
 
         /* ---------- Advocacy (Take Action) form ---------- */
         document.getElementById("advocacyForm").addEventListener("submit", async function(e) {
