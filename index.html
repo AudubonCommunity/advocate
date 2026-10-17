@@ -554,6 +554,7 @@ I look forward to hearing how you plan to address this critical issue in the leg
             <div class="card">
                 <h2>Common-Sense Technology Reforms for Our Schools</h2>
                 <p>Classroom technology isn't going away, and it shouldn't. Used well, it's a real tool for teaching and learning. But a growing, bipartisan body of research and parent concern points to real downsides when screens become the default for everything: shorter attention spans, less face-to-face interaction, and new openings for unvetted apps, ads, and AI tools to reach kids before anyone has checked whether they're safe or effective.</p>
+                <p style="margin-top: 1rem;">New Jersey has already taken one step in this direction: in January 2026, Governor Murphy signed S3695/A4882, requiring statewide guidelines restricting non-academic cell phone and device use during the school day, on buses, and at school events, with district policies taking effect for the 2026-27 school year. That's a good foundation. We think it's worth building on with common-sense rules for the devices and software schools actually assign to students, not just the phones in their pockets.</p>
                 <p style="margin-top: 1rem;">We're not asking Audubon to rip out every device. We're asking for guardrails that most parents, educators, and districts already agree are reasonable:</p>
 
                 <ul>
@@ -567,8 +568,23 @@ I look forward to hearing how you plan to address this critical issue in the leg
                     <li><strong>Screens aren't a reward.</strong> Screen time shouldn't be used as a prize or a behavior-management tool in the classroom.</li>
                 </ul>
 
-                <p style="margin-top: 1rem;">This is an early conversation for our group, not yet a bill-specific campaign. But we think these are the kinds of common-sense, moderate reforms Audubon's schools should be having a real discussion about. If this matters to you, let us know using the sign-up tab, and we'll keep you posted as this takes shape.</p>
+                <p style="margin-top: 1rem;">This is an early conversation for our group, not yet a bill-specific campaign. There's no current New Jersey legislation on classroom EdTech or AI guardrails for us to point you to the way there is for the funding formula or health benefits. But we think these are the kinds of common-sense, moderate reforms Audubon's schools should be having a real discussion about, and we'll let you know if and when that changes.</p>
             </div>
+
+            <section class="card form-card" id="techInterestSignup">
+                <h2>Stay Informed on This Issue</h2>
+                <div class="alert">
+                    <strong>No bill to act on yet.</strong> Sign up below and we'll email you if specific legislation or a district policy proposal on classroom technology comes up that you can weigh in on.
+                </div>
+
+                <form id="techInterestForm">
+                    <div class="form-group">
+                        <label for="tech-interest-email">Your Email Address *</label>
+                        <input type="email" id="tech-interest-email" required placeholder="you@example.com">
+                    </div>
+                    <button type="submit" class="btn">Keep Me Posted</button>
+                </form>
+            </section>
         </section>
 
         <!-- ================= WHO WE ARE ================= -->
@@ -656,7 +672,7 @@ I look forward to hearing how you plan to address this critical issue in the leg
         document.getElementById("issuesNavLink").classList.add("active");
 
         /* ---------- Reusable: "Email Your Legislators" style forms ---------- */
-        function wireAdvocacyForm(formId, ids, formType) {
+        function wireAdvocacyForm(formId, ids, formType, pageSource) {
             const formEl = document.getElementById(formId);
             if (!formEl) return;
 
@@ -673,6 +689,7 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
                 const payload = {
                     formType: formType,
+                    page: pageSource,
                     name: document.getElementById(ids.name).value,
                     email: document.getElementById(ids.email).value,
                     phone: document.getElementById(ids.phone).value,
@@ -712,14 +729,14 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
         wireAdvocacyForm("advocacyForm", {
             name: "name", email: "email", phone: "phone", message: "message", mailingList: "mailingList"
-        }, "advocacy");
+        }, "advocacy", "NJ School Funding Formula");
 
         wireAdvocacyForm("healthcareForm", {
             name: "hc-name", email: "hc-email", phone: "hc-phone", message: "hc-message", mailingList: "hc-mailingList"
-        }, "healthcare");
+        }, "healthcare", "School Health Benefits Reform");
 
         /* ---------- Reusable: newsletter-style email-only signup forms ---------- */
-        function wireNewsletterForm(formId, emailId, onSuccess) {
+        function wireNewsletterForm(formId, emailId, pageSource, onSuccess) {
             const formEl = document.getElementById(formId);
             if (!formEl) return;
 
@@ -735,6 +752,7 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
                 const payload = {
                     formType: "newsletter",
+                    page: pageSource,
                     email: emailField.value
                 };
 
@@ -779,16 +797,19 @@ I look forward to hearing how you plan to address this critical issue in the leg
             localStorage.setItem("acaSignupDismissed", "true");
         });
 
-        wireNewsletterForm("newsletterForm", "newsletterEmail", () => {
+        wireNewsletterForm("newsletterForm", "newsletterEmail", "Sticky Signup Bar", () => {
             signupBar.style.display = "none";
             localStorage.setItem("acaSignupDismissed", "true");
         });
 
         /* ---------- "Sign Up for Updates" tab form ---------- */
-        wireNewsletterForm("signupPageForm", "signup-email", () => {
+        wireNewsletterForm("signupPageForm", "signup-email", "Sign Up for Updates Page", () => {
             localStorage.setItem("acaSignupDismissed", "true");
             signupBar.style.display = "none";
         });
+
+        /* ---------- "Common-Sense Tech in Schools" interest signup ---------- */
+        wireNewsletterForm("techInterestForm", "tech-interest-email", "Common-Sense Tech in Schools");
     </script>
 </body>
 </html>
