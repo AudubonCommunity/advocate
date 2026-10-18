@@ -235,6 +235,29 @@
             color: var(--audubon-green);
         }
 
+        /* ---------- Page banners (original inline illustrations) ---------- */
+        .banner {
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            border-bottom: 4px solid var(--audubon-gold);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.08);
+            background: linear-gradient(135deg, #057a40 0%, var(--audubon-green-dark) 100%);
+        }
+
+        .banner svg {
+            display: block;
+            width: 100%;
+            height: auto;
+            max-height: 190px;
+        }
+
+        .banner .ln { fill: none; stroke: #fff; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0.92; }
+        .banner .gd { fill: none; stroke: var(--audubon-gold); stroke-width: 3.5; stroke-linecap: round; stroke-linejoin: round; }
+        .banner .gf { fill: var(--audubon-gold); }
+        .banner .wf { fill: rgba(255,255,255,0.12); }
+        .banner .bg { fill: rgba(255,255,255,0.06); }
+
         .form-group {
             margin-bottom: 1.25rem;
         }
@@ -424,6 +447,23 @@
 
         <!-- ================= ISSUES > FUNDING FORMULA (default landing page) ================= -->
         <section class="page active" id="page-issue-funding">
+            <div class="banner" role="img" aria-label="Illustration of a schoolhouse beside a rising bar chart and coins">
+                <svg viewBox="0 0 800 190" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle class="bg" cx="90" cy="150" r="120"/><circle class="bg" cx="720" cy="30" r="140"/>
+
+                    <!-- bar chart + coins -->
+                    <path class="ln" d="M110 160 H370"/>
+                    <rect class="wf" x="135" y="115" width="38" height="45" rx="3"/><rect class="wf" x="195" y="90" width="38" height="70" rx="3"/><rect class="wf" x="255" y="65" width="38" height="95" rx="3"/><rect class="wf" x="315" y="40" width="38" height="120" rx="3"/>
+                    <path class="gd" d="M130 105 L215 78 L275 52 L345 24"/><path class="gd" d="M322 22 L346 24 L338 46"/>
+                    <circle class="gd" cx="420" cy="138" r="20"/><circle class="gd" cx="420" cy="138" r="11"/>
+                    <circle class="gd" cx="452" cy="148" r="14"/>
+                    <!-- schoolhouse -->
+                    <path class="ln" d="M520 160 H700 M540 160 V100 M680 160 V100 M520 100 L610 48 L700 100 Z"/>
+                    <path class="ln" d="M585 160 V122 H635 V160 M610 48 V22"/><path class="gf" d="M610 22 L638 30 L610 38 Z"/>
+                    <circle class="gd" cx="610" cy="82" r="10"/>
+                    <rect class="wf" x="556" y="112" width="18" height="22" rx="2"/><rect class="wf" x="646" y="112" width="18" height="22" rx="2"/>
+                </svg>
+            </div>
             <div class="card">
                 <h2>Tell Trenton: Fully Fund the Formula. Stop Scaling Down Our Schools.</h2>
                 <p>New Jersey's school funding formula (SFRA) calculates exactly what each district needs for a thorough and efficient education (the Adequacy Budget) and how much of that a community can reasonably cover locally. The state is supposed to pay the rest through Equalization Aid.</p>
@@ -527,6 +567,20 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
         <!-- ================= ISSUES > HEALTH BENEFITS REFORM ================= -->
         <section class="page" id="page-issue-healthcare">
+            <div class="banner" role="img" aria-label="Illustration of a heart with a pulse line and a shield">
+                <svg viewBox="0 0 800 190" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle class="bg" cx="90" cy="150" r="120"/><circle class="bg" cx="720" cy="30" r="140"/>
+
+                    <!-- pulse line across -->
+                    <path class="ln" d="M60 120 H250 L280 120 L300 70 L330 160 L352 100 L368 120 H400"/>
+                    <!-- heart -->
+                    <path class="gd" d="M400 120 C400 60 470 55 490 95 C510 55 580 60 580 120 C580 160 520 175 490 185 C460 175 400 160 400 120 Z" transform="translate(30 -35) scale(0.95)"/>
+                    <path class="gf" d="M-8 -20 h16 v12 h12 v16 h-12 v12 h-16 v-12 h-12 v-16 h12 Z" transform="translate(494 88)"/>
+                    <!-- shield -->
+                    <path class="ln" d="M660 40 L720 58 V105 C720 135 695 150 660 165 C625 150 600 135 600 105 V58 Z"/>
+                    <path class="gd" d="M635 102 L653 120 L688 82"/>
+                </svg>
+            </div>
             <div class="card">
                 <h2>Tell Trenton: Fix School Health Benefits Before Costs Break the Budget</h2>
                 <p>The 2020 law that gave school employees salary-based health insurance contributions (Chapter 44) expires at the end of 2027.<sup class="src"><a href="https://njpsa.org/?p=16687" target="_blank" rel="noopener noreferrer" title="NJPSA: School Health Care Cost Crisis" aria-label="Source 2: NJPSA: School Health Care Cost Crisis">2</a></sup> In the meantime, health care costs for the School Employees' Health Benefits Program (SEHBP) keep climbing: on September 25, 2026, the state commission that sets premiums voted 4-2 to accept a 34.4% rate increase for about 300,000 school and county college employees and their families, taking effect in January.<sup class="src"><a href="https://www.inquirer.com/politics/health-care-premiums-nj-school-employees-2027-20260929.html" target="_blank" rel="noopener noreferrer" title="Philadelphia Inquirer: Health insurance costs will increase 34% for many N.J. school employees in 2027" aria-label="Source 3: Philadelphia Inquirer: Health insurance costs will increase 34% for many N.J. school employees in 2027">3</a></sup> Audubon has already felt this firsthand: the district's budgeted employee benefit costs climb by about $1.15 million in 2026-27, to $6.93 million.<sup class="src"><a href="https://www.nj.gov/education/budget/ufb/2627/reports/07/UFB27_0150.pdf" target="_blank" rel="noopener noreferrer" title="NJ Department of Education: Audubon 2026-27 User-Friendly Budget Summary" aria-label="Source 1: NJ Department of Education: Audubon 2026-27 User-Friendly Budget Summary">1</a></sup></p>
@@ -629,6 +683,23 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
         <!-- ================= ISSUES > COMMON-SENSE TECH REFORMS ================= -->
         <section class="page" id="page-issue-tech">
+            <div class="banner" role="img" aria-label="Illustration of a laptop and tablet beside an open book">
+                <svg viewBox="0 0 800 190" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle class="bg" cx="90" cy="150" r="120"/><circle class="bg" cx="720" cy="30" r="140"/>
+
+                    <!-- laptop -->
+                    <rect class="ln" x="130" y="48" width="190" height="112" rx="8"/>
+                    <path class="ln" d="M100 168 H350 L335 160 H115 Z"/>
+                    <rect class="wf" x="146" y="64" width="158" height="80" rx="4"/>
+                    <path class="gd" d="M168 118 L196 92 L220 108 L252 76 L282 100"/>
+                    <!-- pause / balance mark -->
+                    <rect class="gf" x="405" y="70" width="16" height="56" rx="4"/><rect class="gf" x="437" y="70" width="16" height="56" rx="4"/>
+                    <!-- open book -->
+                    <path class="ln" d="M520 150 C560 130 600 130 630 150 C660 130 700 130 740 150 V80 C700 60 660 60 630 80 C600 60 560 60 520 80 Z"/>
+                    <path class="ln" d="M630 80 V150"/>
+                    <path class="gd" d="M545 98 C565 90 585 90 605 100 M655 100 C675 90 695 90 715 98 M545 120 C565 112 585 112 605 122 M655 122 C675 112 695 112 715 120"/>
+                </svg>
+            </div>
             <div class="card">
                 <h2>Common-Sense Technology Reforms for Our Schools</h2>
                 <p>Classroom technology isn't going away, and it shouldn't. Used well, it's a real tool for teaching and learning. UNESCO's global education report concluded that "some technology supports some learning in some contexts, but not when it's over-used," and noted that good, impartial evidence on education technology is in short supply.<sup class="src"><a href="https://www.teachermagazine.com/au_en/articles/unesco-calls-for-smartphone-ban-in-schools" target="_blank" rel="noopener noreferrer" title="Teacher Magazine: UNESCO calls for smartphone ban in schools" aria-label="Source 3: Teacher Magazine: UNESCO calls for smartphone ban in schools">3</a></sup> That is the case for guardrails: clear rules about which tools belong in the classroom, and proof that they help students before districts adopt them.</p>
@@ -678,6 +749,22 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
         <!-- ================= WHO WE ARE ================= -->
         <section class="page" id="page-who-we-are">
+            <div class="banner" role="img" aria-label="Illustration of neighbors standing together in front of a row of houses">
+                <svg viewBox="0 0 800 190" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle class="bg" cx="90" cy="150" r="120"/><circle class="bg" cx="720" cy="30" r="140"/>
+
+                    <!-- houses -->
+                    <path class="ln" d="M60 165 H740"/>
+                    <path class="ln" d="M80 165 V115 L115 88 L150 115 V165 M170 165 V105 L210 72 L250 105 V165"/>
+                    <path class="ln" d="M550 165 V105 L590 72 L630 105 V165 M650 165 V115 L685 88 L720 115 V165"/>
+                    <rect class="wf" x="103" y="130" width="24" height="35" rx="2"/><rect class="wf" x="578" y="130" width="24" height="35" rx="2"/>
+                    <!-- people -->
+                    <circle class="gd" cx="330" cy="82" r="17"/><path class="gd" d="M300 165 V135 C300 118 360 118 360 135 V165"/>
+                    <circle class="ln" cx="400" cy="64" r="21"/><path class="ln" d="M362 165 V128 C362 106 438 106 438 128 V165"/>
+                    <circle class="gd" cx="470" cy="82" r="17"/><path class="gd" d="M440 165 V135 C440 118 500 118 500 135 V165"/>
+                    <path class="gf" d="M400 28 l5 11 12 1 -9 8 3 12 -11 -6 -11 6 3 -12 -9 -8 12 -1 Z" transform="translate(0 -12) scale(1)"/>
+                </svg>
+            </div>
             <div class="card">
                 <h2>Who We Are</h2>
                 <p>Audubon Community Advocates is a group of concerned neighbors, parents, and residents of Audubon, NJ who came together because we believe our schools, our educators, and our students deserve better.</p>
@@ -688,6 +775,23 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
         <!-- ================= SIGN UP FOR UPDATES ================= -->
         <section class="page" id="page-signup">
+            <div class="banner" role="img" aria-label="Illustration of an envelope with a bell for email updates">
+                <svg viewBox="0 0 800 190" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <circle class="bg" cx="90" cy="150" r="120"/><circle class="bg" cx="720" cy="30" r="140"/>
+
+                    <!-- envelope -->
+                    <rect class="ln" x="290" y="60" width="220" height="110" rx="10"/>
+                    <path class="ln" d="M292 66 L400 128 L508 66"/>
+                    <path class="gd" d="M292 168 L360 110 M508 168 L440 110"/>
+                    <!-- sparkles -->
+                    <path class="gf" d="M560 40 l4 10 10 4 -10 4 -4 10 -4 -10 -10 -4 10 -4 Z"/>
+                    <path class="gf" d="M230 50 l3 7 7 3 -7 3 -3 7 -3 -7 -7 -3 7 -3 Z"/>
+                    <circle class="gd" cx="590" cy="120" r="6"/><circle class="gd" cx="205" cy="125" r="6"/>
+                    <!-- bell -->
+                    <path class="ln" d="M650 135 C650 100 662 85 680 85 C698 85 710 100 710 135 L722 148 H638 Z"/>
+                    <path class="gd" d="M670 158 C670 168 690 168 690 158"/><path class="ln" d="M680 85 V76"/>
+                </svg>
+            </div>
             <div class="card form-card">
                 <h2>Sign Up for Updates</h2>
                 <p>Get occasional emails from Audubon Community Advocates when there's a new issue to weigh in on, a vote coming up, or a chance to make your voice heard at the next Board of Education or Town Council meeting. We won't flood your inbox, and you can unsubscribe at any time.</p>
