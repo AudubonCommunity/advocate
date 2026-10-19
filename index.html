@@ -264,30 +264,6 @@
         .banner .wf { fill: rgba(255,255,255,0.12); }
         .banner .bg { fill: rgba(255,255,255,0.06); }
 
-        /* ---------- Copy-link button ---------- */
-        .share-row {
-            display: flex;
-            justify-content: flex-end;
-            margin: -0.5rem 0 1rem;
-        }
-
-        .copy-link {
-            background: none;
-            border: 1px solid var(--audubon-green);
-            color: var(--audubon-green);
-            font-size: 0.85rem;
-            font-weight: 600;
-            padding: 0.35rem 0.8rem;
-            border-radius: 999px;
-            cursor: pointer;
-        }
-
-        .copy-link:hover,
-        .copy-link:focus {
-            background-color: var(--audubon-green);
-            color: #fff;
-        }
-
         .form-group {
             margin-bottom: 1.25rem;
         }
@@ -485,8 +461,9 @@
                     <path class="ln" d="M110 160 H370"/>
                     <rect class="wf" x="135" y="115" width="38" height="45" rx="3"/><rect class="wf" x="195" y="90" width="38" height="70" rx="3"/><rect class="wf" x="255" y="65" width="38" height="95" rx="3"/><rect class="wf" x="315" y="40" width="38" height="120" rx="3"/>
                     <path class="gd" d="M130 105 L215 78 L275 52 L345 24"/><path class="gd" d="M322 22 L346 24 L338 46"/>
-                    <circle class="gd" cx="420" cy="138" r="20"/><circle class="gd" cx="420" cy="138" r="11"/>
-                    <circle class="gd" cx="452" cy="148" r="14"/>
+                    <!-- dollar coin -->
+                    <circle class="gd" cx="445" cy="100" r="36"/><circle class="gd" cx="445" cy="100" r="28" stroke-width="2"/>
+                    <text x="445" y="113" text-anchor="middle" font-size="38" font-weight="700" fill="#FFCD00" font-family="Georgia, 'Times New Roman', serif">$</text>
                     <!-- schoolhouse -->
                     <path class="ln" d="M520 160 H700 M540 160 V100 M680 160 V100 M520 100 L610 48 L700 100 Z"/>
                     <path class="ln" d="M585 160 V122 H635 V160 M610 48 V22"/><path class="gf" d="M610 22 L638 30 L610 38 Z"/>
@@ -494,7 +471,6 @@
                     <rect class="wf" x="556" y="112" width="18" height="22" rx="2"/><rect class="wf" x="646" y="112" width="18" height="22" rx="2"/>
                 </svg>
             </div>
-            <div class="share-row"><button type="button" class="copy-link" data-slug="funding">Copy link to this page</button></div>
             <div class="card">
                 <h2>Tell Trenton: Fully Fund the Formula. Stop Scaling Down Our Schools.</h2>
                 <p>New Jersey's school funding formula (SFRA) calculates exactly what each district needs for a thorough and efficient education (the Adequacy Budget) and how much of that a community can reasonably cover locally. The state is supposed to pay the rest through Equalization Aid.</p>
@@ -602,17 +578,16 @@ I look forward to hearing how you plan to address this critical issue in the leg
                 <svg viewBox="0 0 800 190" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                     <circle class="bg" cx="90" cy="150" r="120"/><circle class="bg" cx="720" cy="30" r="140"/>
 
-                    <!-- pulse line across -->
-                    <path class="ln" d="M60 120 H250 L280 120 L300 70 L330 160 L352 100 L368 120 H400"/>
-                    <!-- heart -->
-                    <path class="gd" d="M400 120 C400 60 470 55 490 95 C510 55 580 60 580 120 C580 160 520 175 490 185 C460 175 400 160 400 120 Z" transform="translate(30 -35) scale(0.95)"/>
-                    <path class="gf" d="M-8 -20 h16 v12 h12 v16 h-12 v12 h-16 v-12 h-12 v-16 h12 Z" transform="translate(494 88)"/>
+                    <!-- pulse line -->
+                    <path class="ln" d="M70 100 H120 L140 100 L156 54 L178 142 L195 80 L208 100 H250"/>
+                    <!-- heart with cross -->
+                    <path class="gd" d="M400 152 C338 112 334 60 372 54 C390 52 400 66 400 74 C400 66 410 52 428 54 C466 60 462 112 400 152 Z"/>
+                    <path class="gf" d="M-7 -17 h14 v10 h10 v14 h-10 v10 h-14 v-10 h-10 v-14 h10 Z" transform="translate(400 98)"/>
                     <!-- shield -->
-                    <path class="ln" d="M660 40 L720 58 V105 C720 135 695 150 660 165 C625 150 600 135 600 105 V58 Z"/>
-                    <path class="gd" d="M635 102 L653 120 L688 82"/>
+                    <path class="ln" d="M640 42 L690 58 V100 C690 128 668 142 640 154 C612 142 590 128 590 100 V58 Z"/>
+                    <path class="gd" d="M617 98 L634 114 L666 78"/>
                 </svg>
             </div>
-            <div class="share-row"><button type="button" class="copy-link" data-slug="healthcare">Copy link to this page</button></div>
             <div class="card">
                 <h2>Tell Trenton: Fix School Health Benefits Before Costs Break the Budget</h2>
                 <p>The 2020 law that gave school employees salary-based health insurance contributions (Chapter 44) expires at the end of 2027.<sup class="src"><a href="https://njpsa.org/?p=16687" target="_blank" rel="noopener noreferrer" title="NJPSA: School Health Care Cost Crisis" aria-label="Source 1: NJPSA: School Health Care Cost Crisis">1</a></sup> In the meantime, health care costs for the School Employees' Health Benefits Program (SEHBP) keep climbing: on September 25, 2026, the state commission that sets premiums voted 4-2 to accept a 34.4% rate increase for about 300,000 school and county college employees and their families, taking effect in January.<sup class="src"><a href="https://www.inquirer.com/politics/health-care-premiums-nj-school-employees-2027-20260929.html" target="_blank" rel="noopener noreferrer" title="Philadelphia Inquirer: Health insurance costs will increase 34% for many N.J. school employees in 2027" aria-label="Source 2: Philadelphia Inquirer: Health insurance costs will increase 34% for many N.J. school employees in 2027">2</a></sup> Those increases land on school districts: the NJ School Boards Association told the Senate State Government Committee on October 15 that boards of education and taxpayers have absorbed nearly all of the premium increases under the current system.<sup class="src"><a href="https://communitynews.org/towns/trenton-downtowner/senate-panel-in-trenton-hears-split-testimony-on-union-backed-school-health-plan/" target="_blank" rel="noopener noreferrer" title="Community News: Senate Panel in Trenton Hears Split Testimony" aria-label="Source 5: Community News: Senate Panel in Trenton Hears Split Testimony">5</a></sup></p>
@@ -723,15 +698,14 @@ I look forward to hearing how you plan to address this critical issue in the leg
                     <path class="ln" d="M100 168 H350 L335 160 H115 Z"/>
                     <rect class="wf" x="146" y="64" width="158" height="80" rx="4"/>
                     <path class="gd" d="M168 118 L196 92 L220 108 L252 76 L282 100"/>
-                    <!-- pause / balance mark -->
-                    <rect class="gf" x="405" y="70" width="16" height="56" rx="4"/><rect class="gf" x="437" y="70" width="16" height="56" rx="4"/>
+                    <!-- not equal: screens are not a substitute for real learning -->
+                    <path d="M410 90 H460 M410 118 H460 M450 66 L420 142" fill="none" stroke="#FFCD00" stroke-width="8" stroke-linecap="round"/>
                     <!-- open book -->
                     <path class="ln" d="M520 150 C560 130 600 130 630 150 C660 130 700 130 740 150 V80 C700 60 660 60 630 80 C600 60 560 60 520 80 Z"/>
                     <path class="ln" d="M630 80 V150"/>
                     <path class="gd" d="M545 98 C565 90 585 90 605 100 M655 100 C675 90 695 90 715 98 M545 120 C565 112 585 112 605 122 M655 122 C675 112 695 112 715 120"/>
                 </svg>
             </div>
-            <div class="share-row"><button type="button" class="copy-link" data-slug="tech">Copy link to this page</button></div>
             <div class="card">
                 <h2>Common-Sense Technology Reforms for Our Schools</h2>
                 <p>Classroom technology isn't going away, and it shouldn't. Used well, it's a real tool for teaching and learning. UNESCO's global education report concluded that "some technology supports some learning in some contexts, but not when it's over-used," and noted that good, impartial evidence on education technology is in short supply.<sup class="src"><a href="https://www.teachermagazine.com/au_en/articles/unesco-calls-for-smartphone-ban-in-schools" target="_blank" rel="noopener noreferrer" title="Teacher Magazine: UNESCO calls for smartphone ban in schools" aria-label="Source 3: Teacher Magazine: UNESCO calls for smartphone ban in schools">3</a></sup> That is the case for guardrails: clear rules about which tools belong in the classroom, and proof that they help students before districts adopt them.</p>
@@ -969,28 +943,6 @@ I look forward to hearing how you plan to address this critical issue in the leg
                 showPage("issue-funding", route ? route.scrollToId : null);
             }
         })();
-
-        // "Copy link to this page" buttons
-        document.querySelectorAll(".copy-link").forEach(btn => {
-            btn.addEventListener("click", async function() {
-                const url = window.location.origin + window.location.pathname + "#" + this.getAttribute("data-slug");
-                const original = this.textContent;
-                let ok = false;
-                try {
-                    await navigator.clipboard.writeText(url);
-                    ok = true;
-                } catch (err) {
-                    const tmp = document.createElement("input");
-                    tmp.value = url;
-                    document.body.appendChild(tmp);
-                    tmp.select();
-                    try { ok = document.execCommand("copy"); } catch (e2) { ok = false; }
-                    document.body.removeChild(tmp);
-                }
-                this.textContent = ok ? "Link copied!" : url;
-                setTimeout(() => { this.textContent = original; }, 2500);
-            });
-        });
 
         /* ---------- Reusable: "Email Your Legislators" style forms ---------- */
         function wireAdvocacyForm(formId, ids, formType, pageSource) {
