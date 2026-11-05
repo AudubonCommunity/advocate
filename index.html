@@ -1277,6 +1277,14 @@ I look forward to hearing how you plan to address this critical issue in the leg
                 errorEl.hidden = true;
 
                 try {
+                    // SAFETY CHECK: only send the signature if the script proves it understands
+                    // petitions. An out-of-date script would mishandle it, so we refuse to send.
+                    const probe = await fetch(GOOGLE_SCRIPT_URL + "?action=petitionCount");
+                    const probeResult = await probe.json();
+                    if (!probeResult || probeResult.status !== "success") {
+                        throw new Error("The sign-up script is not the current version. Nothing was sent.");
+                    }
+
                     // A plain-text body keeps this a "simple" request, so the browser lets us
                     // read the script's reply and confirm the signature was really recorded.
                     const res = await fetch(GOOGLE_SCRIPT_URL, {
