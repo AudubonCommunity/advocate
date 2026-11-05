@@ -400,6 +400,15 @@
             overflow: hidden;
         }
 
+        .form-error {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            background: #fff5f5;
+            border-left: 4px solid #dc3545;
+            border-radius: 4px;
+            color: #9b1c1c;
+        }
+
         .thanks {
             padding: 1rem 1.25rem;
             background: #f0fff4;
@@ -868,6 +877,8 @@ I look forward to hearing how you plan to address this critical issue in the leg
                         <label for="pet-updates">Keep me posted on how the district responds, and on other Audubon Community Advocates updates.</label>
                     </div>
 
+                    <p class="form-error" id="petitionError" role="alert" hidden></p>
+
                     <button type="submit" class="btn">Sign the Petition</button>
                 </form>
 
@@ -1262,13 +1273,20 @@ I look forward to hearing how you plan to address this critical issue in the leg
                     website: document.getElementById("pet-website").value   // spam trap
                 };
 
+                const errorEl = document.getElementById("petitionError");
+                errorEl.hidden = true;
+
                 try {
-                    await fetch(GOOGLE_SCRIPT_URL, {
+                    // A plain-text body keeps this a "simple" request, so the browser lets us
+                    // read the script's reply and confirm the signature was really recorded.
+                    const res = await fetch(GOOGLE_SCRIPT_URL, {
                         method: "POST",
-                        mode: "no-cors",
-                        headers: { "Content-Type": "application/json" },
                         body: JSON.stringify(payload)
                     });
+                    const result = await res.json();
+                    if (!result || result.status !== "success") {
+                        throw new Error((result && result.message) || "The sheet did not confirm the signature.");
+                    }
 
                     form.reset();
                     form.hidden = true;
@@ -1278,13 +1296,11 @@ I look forward to hearing how you plan to address this critical issue in the leg
                     thanksEl.scrollIntoView({ behavior: "smooth", block: "center" });
                 } catch (error) {
                     console.error("Petition signing failed:", error);
-                    submitBtn.textContent = "Error. Please Try Again.";
-                    submitBtn.style.backgroundColor = "#dc3545";
+                    errorEl.textContent = "Sorry, your signature could not be recorded. Please try again in a moment, or email auduboncommunityadvocates@gmail.com and we will add you.";
+                    errorEl.hidden = false;
+                    submitBtn.textContent = originalText;
+                    submitBtn.style.backgroundColor = "";
                     submitBtn.disabled = false;
-                    setTimeout(() => {
-                        submitBtn.textContent = originalText;
-                        submitBtn.style.backgroundColor = "";
-                    }, 4000);
                 }
             });
         })();
