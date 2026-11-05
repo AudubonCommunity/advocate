@@ -863,8 +863,8 @@ I look forward to hearing how you plan to address this critical issue in the leg
 
                     <!-- spam trap: real visitors never see or fill this -->
                     <div class="hp-field" aria-hidden="true">
-                        <label for="pet-website">Leave this field empty</label>
-                        <input type="text" id="pet-website" tabindex="-1" autocomplete="off">
+                        <label for="pet-zq-trap">Leave this field empty</label>
+                        <input type="text" id="pet-zq-trap" tabindex="-1" autocomplete="off" data-lpignore="true" data-1p-ignore="true">
                     </div>
 
                     <div class="checkbox-group">
@@ -1270,7 +1270,7 @@ I look forward to hearing how you plan to address this critical issue in the leg
                     role: document.getElementById("pet-role").value,
                     comment: document.getElementById("pet-comment").value.trim(),
                     updates: document.getElementById("pet-updates").checked,
-                    website: document.getElementById("pet-website").value   // spam trap
+                    hp: document.getElementById("pet-zq-trap").value   // spam trap
                 };
 
                 const errorEl = document.getElementById("petitionError");
